@@ -1,10 +1,10 @@
+//! A library for handling money
 use std::str::FromStr;
 
-mod parse;
+pub mod parse;
 use parse::*;
 
-#[derive(Debug,PartialEq)]
-pub struct GBP(i32);
+
 
 #[derive(Debug,PartialEq)]
 pub enum GBPError {
@@ -17,6 +17,18 @@ impl From<ParseMoneyError> for GBPError {
         GBPError::ParseError(p)
     }
 }
+
+
+/// Parse your money from a string
+/// ```
+/// use parses::*;
+/// let g = "£31.22".parse(); // parse method actually tests something implement FromStr trait
+/// assert_eq!(g, Ok(GBP(3122)));
+/// ```
+
+#[derive(Debug,PartialEq)]
+pub struct GBP(pub i32);
+
 impl FromStr for GBP {
     // type Err = ParseMoneyError;
     type Err = GBPError;
@@ -26,12 +38,12 @@ impl FromStr for GBP {
 }
 
 
-#[cfg(test)]
-mod tests {
-    use super::*;
-    #[test]
-    fn it_works() {
-        let g = "£31.22".parse(); // parse method actually tests something implement FromStr trait
-        assert_eq!(g, Ok(GBP(3122)));
-    }
-}
+// #[cfg(test)]
+// mod tests {
+//     use super::*;
+//     #[test]
+//     fn it_works() {
+//         let g = "£31.22".parse(); // parse method actually tests something implement FromStr trait
+//         assert_eq!(g, Ok(GBP(3122)));
+//     }
+// }

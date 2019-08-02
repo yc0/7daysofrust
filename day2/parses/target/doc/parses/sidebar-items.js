@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["GBPError",""]],"mod":[["parse",""]],"struct":[["GBP","Parse your money from a string `use parses::*; let g = \"£31.22\".parse(); // parse method actually tests something implement FromStr trait assert_eq!(g, Ok(GBP(3122)));`"]]});
